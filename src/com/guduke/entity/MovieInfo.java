@@ -5,6 +5,7 @@ public class MovieInfo {
 	private String name;
 	private String url;
 	private String time;
+	private String downloadUrl;
 	public int getId() {
 		return id;
 	}
@@ -29,16 +30,20 @@ public class MovieInfo {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public MovieInfo(int id, String name, String url, String time) {
-		super();
+	public String getDownloadUrl() {
+		return downloadUrl;
+	}
+	public void setDownloadUrl(String downloadUrl) {
+		this.downloadUrl = downloadUrl;
+	}
+	public MovieInfo(int id, String name, String url, String time, String downloadUrl) {
 		this.id = id;
 		this.name = name;
 		this.url = url;
 		this.time = time;
+		this.downloadUrl = downloadUrl;
 	}
-	@Override
-	public String toString() {
-		return "MovieInfo [id=" + id + ", name=" + name + ", url=" + url + ", time=" + time + "]";
+	public MovieInfo() {
+		
 	}
-	
 }

@@ -18,15 +18,15 @@ public class InfoTools {
 		Elements select = document.select("table[class='tbspan']");
 		for (int i = 0; i < select.size(); i++) {
 			//获取影片地址
-			String url = select.get(i).select("a:eq(1)").attr("href");
+			String url = "http://www.ygdy8.net/" + select.get(i).select("a:eq(1)").attr("href");
 			//获取影片下载地址
-			url = getDownloadUrl(url);
+			String downloadUrl = getDownloadUrl(url);
 			//获取发布时间
 			String time = select.get(i).select("tr").eq(2).select("td:eq(1)").text();
 			time = time.substring(3, time.indexOf(" "));
 			//获取影片名
 			String name = select.get(i).select("a:eq(1)").text();
-			MovieInfo movieInfo = new MovieInfo(i, name, url, time);
+			MovieInfo movieInfo = new MovieInfo(i+1, name, url, time, downloadUrl);
 			list.add(movieInfo);
 		}
 		return list;
@@ -34,7 +34,6 @@ public class InfoTools {
 	
 	//获取影片的实际下载地址
 	public String getDownloadUrl(String url) throws IOException{
-		url = "http://www.ygdy8.net/"+url;
 		Document doc = Jsoup.connect(url).get();
 		//获取所有的a元素
 		Elements elements = doc.select("a");
@@ -55,11 +54,11 @@ public class InfoTools {
 		//获取影片对应位置的tr 
 		Elements select = doc.select("table").eq(1).select("tr");
 		for (int i = 0; i < select.size(); i++) {
-			String url = select.get(i).select("a:eq(1)").attr("href");
-			url = getDownloadUrl(url);
+			String url = "http://www.ygdy8.net/" + select.get(i).select("a:eq(1)").attr("href");
+			String downloadUrl = getDownloadUrl(url);
 			String name = select.get(i).select("a:eq(1)").text();
 			String time = select.get(i).select("td:eq(1)").text();
-			MovieInfo movieInfo = new MovieInfo(i, name, url, time);
+			MovieInfo movieInfo = new MovieInfo(i+1, name, url, time, downloadUrl);
 			list.add(movieInfo);
 		}
 		return list;	

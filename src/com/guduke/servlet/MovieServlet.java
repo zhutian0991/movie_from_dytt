@@ -32,7 +32,7 @@ public class MovieServlet extends HttpServlet {
 		//设置请求域属性
 		request.setAttribute("movies", movies);
 		//转发到首页
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/home.jsp").forward(request, response);
 	}
 
 }
